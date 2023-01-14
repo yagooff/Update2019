@@ -14,10 +14,10 @@ namespace SalesWebMvc.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nema = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    BaseSaraly = table.Column<double>(nullable: false),
+                    BaseSalary = table.Column<double>(nullable: false),
                     DepartmentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -32,7 +32,7 @@ namespace SalesWebMvc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SalesRecords",
+                name: "SalesRecord",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -44,9 +44,9 @@ namespace SalesWebMvc.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesRecords", x => x.Id);
+                    table.PrimaryKey("PK_SalesRecord", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalesRecords_Seller_SellerId",
+                        name: "FK_SalesRecord_Seller_SellerId",
                         column: x => x.SellerId,
                         principalTable: "Seller",
                         principalColumn: "Id",
@@ -54,8 +54,8 @@ namespace SalesWebMvc.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesRecords_SellerId",
-                table: "SalesRecords",
+                name: "IX_SalesRecord_SellerId",
+                table: "SalesRecord",
                 column: "SellerId");
 
             migrationBuilder.CreateIndex(
@@ -67,7 +67,7 @@ namespace SalesWebMvc.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SalesRecords");
+                name: "SalesRecord");
 
             migrationBuilder.DropTable(
                 name: "Seller");
